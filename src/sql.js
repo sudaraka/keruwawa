@@ -11,6 +11,7 @@ export const
     projects as p
     on
       p.ProjectId = s.ProjectId
+      and DATE_FORMAT(StartTime, '%Y') in (?)
   GROUP BY
     ProjectName,
     Week

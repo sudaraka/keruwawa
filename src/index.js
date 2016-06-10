@@ -11,13 +11,19 @@ const
   })
 
 conn.connect(err => {
+  let
+    sql
+
   if(err) {
     console.error('Database connection error: ', err)
 
     return
   }
 
-  conn.query(WEEKLY_ALL, (err, result) => {
+  sql = mysql.format(WEEKLY_ALL, [[ 2011, 2012, 2013, 2014, 2015 ]])
+  console.log(sql)
+
+  conn.query(sql, (err, result) => {
     if(err) {
       console.error('Query failed: ', err)
 
