@@ -6,8 +6,8 @@
   "main": "index.js",
   "scripts": {
     "prebuild": "mkdir -p dist/",
-    "build": "babel src/ --out-file dist/$npm_package_name.js",
-    "test": ". ./.env && node dist/$npm_package_name.js"
+    "build": "babel src/ --out-dir dist/ --compact true --minified",
+    "test": ". ./.env && node dist/"
   },
   "keywords": [
     "time-sheet",
