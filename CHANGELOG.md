@@ -13,5 +13,6 @@ details.
 
 ## [Unreleased]
 ### Added
+- Babel support to transpile ES2015 code.
 - package.json: `npm` support for task running and package management.
 - README, LICENSE and CHANGELOG
