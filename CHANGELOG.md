@@ -13,4 +13,5 @@ details.
 
 ## [Unreleased]
 ### Added
+- package.json: `npm` support for task running and package management.
 - README, LICENSE and CHANGELOG

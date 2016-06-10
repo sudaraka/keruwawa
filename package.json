@@ -1,0 +1,17 @@
+{
+  "name": "keruwawa",
+  "version": "0.0.0",
+  "description": "Reports and graphs generated based on my time-sheet data.",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "exit 0;"
+  },
+  "keywords": [
+    "time-sheet",
+    "time-tracking",
+    "reports"
+  ],
+  "author": "Sudaraka Wijesinghe <sudaraka@sudaraka.org> (https://sudaraka.org/)",
+  "license": "BSD-2-Clause"
+}
