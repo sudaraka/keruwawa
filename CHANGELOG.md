@@ -13,6 +13,7 @@ details.
 
 ## [Unreleased]
 ### Added
+- Query `MySQL` database using `mysql` package.
 - Babel support to transpile ES2015 code.
 - package.json: `npm` support for task running and package management.
 - README, LICENSE and CHANGELOG
