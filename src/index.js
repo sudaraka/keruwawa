@@ -10,10 +10,25 @@ const
     'database': process.env.KERUWAWA_DB_NAME || 'timesheet',
   })
 
-conn.connect()
+conn.connect(err => {
+  if(err) {
+    console.error('Database connection error: ', err)
 
-conn.query(WEEKLY_ALL, (err, result) => {
-  console.log(JSON.stringify(result, null, 2))
+    return
+  }
+
+  conn.query(WEEKLY_ALL, (err, result) => {
+    if(err) {
+      console.error('Query failed: ', err)
+
+      conn.end()
+      return
+    }
+
+    console.log(JSON.stringify(result, null, 2))
+
+    conn.end()
+  })
+
 })
 
-conn.end()
