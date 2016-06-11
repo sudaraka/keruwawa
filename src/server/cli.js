@@ -18,6 +18,8 @@ const
     process.env.KERUWAWA_HTTP_HOST || '127.0.0.1'
   )
 
+// --- HTTP Server event handlers ------------------------------------------ {{{
+
 server.on('listening', () => {
   const
     addr = server.address()
@@ -56,3 +58,7 @@ server.on('error', error => {
 
   throw error
 })
+
+// ------------------------------------------------------------------------- }}}
+
+app.set('x-powered-by', false)
