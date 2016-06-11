@@ -22,18 +22,33 @@ server.on('listening', () => {
   const
     addr = server.address()
 
-  console.log(`Keruwawa API Server running: http://${addr.address}:${addr.port}`)
+  if('string' === typeof addr) {
+    console.log(`Keruwawa API Server running: ${addr}`)
+  }
+  else {
+    console.log(`Keruwawa API Server running: http://${addr.address}:${addr.port}`)
+  }
 })
 
 server.on('error', error => {
   if('listen' === error.syscall) {
     if('EADDRINUSE' === error.code) {
-      console.error(`Port ${error.address}:${error.port} already in use`)
+      if(-1 === error.port) {
+        console.error(`Socket ${error.address} already in use`)
+      }
+      else {
+        console.error(`Port ${error.address}:${error.port} already in use`)
+      }
 
       process.exit(1)
     }
     else if('EACCES' === error.code) {
-      console.error(`No permission to start server on http://${error.address}:${error.port}/`)
+      if(-1 === error.port) {
+        console.error(`No permission to start server on unix://${error.address}`)
+      }
+      else {
+        console.error(`No permission to start server on http://${error.address}:${error.port}/`)
+      }
 
       process.exit(1)
     }
