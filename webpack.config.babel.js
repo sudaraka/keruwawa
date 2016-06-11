@@ -2,6 +2,7 @@ import 'webpack'
 import { join } from 'path'
 
 export default {
+  'target': 'node',
   'context': join(__dirname, 'src'),
 
   'entry': {
