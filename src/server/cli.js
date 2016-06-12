@@ -12,6 +12,7 @@
 import express from 'express'
 
 import appRoutes from './routes/app'
+import apiRoutes from './routes/api'
 
 const
   app = express(),
@@ -67,6 +68,7 @@ app.set('x-powered-by', false)
 
 // Routers
 app.use('/', appRoutes)
+app.use('/api/', apiRoutes)
 
 // --- HTTP 404 handler ---------------------------------------------------- {{{
 // IMPORTANT: this must be the last request handler.
