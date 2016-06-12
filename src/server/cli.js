@@ -74,12 +74,18 @@ app.use('/api/', apiRoutes)
 // IMPORTANT: this must be the last request handler.
 
 app.use((req, res, next) => {
-  res
-    .status(404)
-    .send('<h1>Not Found</h1>')
+  res.status(404)
+
+  if(req.url.match(/^\/api\//)) {
+    res.json({})
+  }
+  else {
+    // TODO: Render error using HTML
+    res.send('<h1>Not Found</h1>')
+  }
 })
 
-// --- HTTP Server event handlers ------------------------------------------ }}}
+// --- HTTP 404 handler ---------------------------------------------------- }}}
 
 // --- Default error handler ----------------------------------------------- {{{
 
