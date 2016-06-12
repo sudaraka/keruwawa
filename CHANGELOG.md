@@ -13,6 +13,7 @@ details.
 
 ## [Unreleased]
 ### Added
+- ESLint support.
 - `webpack` to build web server executable script with ES2015 support.
 - `Express` web server framework to host API.
 - Query `MySQL` database using `mysql` package.
