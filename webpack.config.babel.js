@@ -5,9 +5,7 @@ export default {
   'target': 'node',
   'context': join(__dirname, 'src'),
 
-  'entry': {
-    'server.js': './server/cli.js'
-  },
+  'entry': { 'server.js': './server/cli.js' },
 
   'output': {
     'path': join(__dirname, 'dist'),
@@ -16,7 +14,11 @@ export default {
 
   'module': {
     'loaders': [
-      { 'test': /\.js$/, 'exclude': /node_modules/, 'loader': 'babel' }
+      {
+        'test': /\.js$/,
+        'exclude': /node_modules/,
+        'loader': 'babel'
+      }
     ]
   },
 

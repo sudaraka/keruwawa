@@ -14,7 +14,7 @@ import { Router } from 'express'
 import { apiResponse } from '../utils'
 
 const
-  route = Router()
+  route = Router()  // eslint-disable-line new-cap
 
 route.get('/', (req, res) => {
   res.json(apiResponse())

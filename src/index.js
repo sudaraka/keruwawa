@@ -3,31 +3,31 @@ import mysql from 'mysql'
 import { WEEKLY_ALL } from './sql'
 
 const
-  conn = mysql.createConnection({
-    'host': process.env.KERUWAWA_DB_HOST || 'localhost',
-    'user': process.env.KERUWAWA_DB_USER || 'root',
-    'password': process.env.KERUWAWA_DB_PASSWORD || '',
-    'database': process.env.KERUWAWA_DB_NAME || 'timesheet',
-  })
+  conn = mysql.createConnection()
+  //   'host': process.env.KERUWAWA_DB_HOST || 'localhost',
+  //   'user': process.env.KERUWAWA_DB_USER || 'root',
+  //   'password': process.env.KERUWAWA_DB_PASSWORD || '',
+  //   'database': process.env.KERUWAWA_DB_NAME || 'timesheet'
+  // })
 
-conn.connect(err => {
-  let
-    sql
-
-  if(err) {
-    console.error('Database connection error: ', err)
+conn.connect(errConnect => {
+  if(errConnect) {
+    console.error('Database connection error: ', errConnect)
 
     return
   }
 
-  sql = mysql.format(WEEKLY_ALL, [[ 2011, 2012, 2013, 2014, 2015 ]])
+  const
+    sql = mysql.format(WEEKLY_ALL, [ [ 2011, 2012, 2013, 2014, 2015 ] ])
+
   console.log(sql)
 
-  conn.query(sql, (err, result) => {
-    if(err) {
-      console.error('Query failed: ', err)
+  conn.query(sql, (errQuery, result) => {
+    if(errQuery) {
+      console.error('Query failed: ', errQuery)
 
       conn.end()
+
       return
     }
 

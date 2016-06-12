@@ -44,7 +44,7 @@ server.on('error', error => {
         console.error(`Port ${error.address}:${error.port} already in use`)
       }
 
-      process.exit(1)
+      process.exit(1)  // eslint-disable-line no-process-exit
     }
     else if('EACCES' === error.code) {
       if(-1 === error.port) {
@@ -54,7 +54,7 @@ server.on('error', error => {
         console.error(`No permission to start server on http://${error.address}:${error.port}/`)
       }
 
-      process.exit(1)
+      process.exit(1)  // eslint-disable-line no-process-exit
     }
   }
 
@@ -72,7 +72,7 @@ app.use('/api/', apiRoutes)
 // --- HTTP 404 handler ---------------------------------------------------- {{{
 // IMPORTANT: this must be the last request handler.
 
-app.use((req, res, next) => {
+app.use((req, res /* next */) => {
   res.status(404)
 
   if(req.url.match(/^\/api\//)) {
@@ -88,7 +88,7 @@ app.use((req, res, next) => {
 
 // --- Default error handler ----------------------------------------------- {{{
 
-app.use((err, req, res, next) => {
+app.use((err, req, res /* next */) => {
   // TODO: Render error using HTML
   // TODO: Print stack trace only in development mode
   res

@@ -13,9 +13,9 @@ export const
   apiResponse = ({ data = null, message = null, code = 200 } = {}) => {
     const
       messageMap = {
-        200: 'OK',
-        404: 'Not found',
-        500: 'Internal error'
+        '200': 'OK',
+        '404': 'Not found',
+        '500': 'Internal error'
       }
 
     if(!message) {
@@ -24,7 +24,7 @@ export const
     }
 
     return {
-      'error': 200 != code,
+      'error': 200 !== code,
       code,
       message,
       data

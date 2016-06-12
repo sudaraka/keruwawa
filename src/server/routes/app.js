@@ -12,7 +12,7 @@
 import { Router } from 'express'
 
 const
-  route = Router()
+  route = Router()  // eslint-disable-line new-cap
 
 route.get('/', (req, res) => {
   res.render('index')
