@@ -78,3 +78,15 @@ app.use((req, res, next) => {
 })
 
 // --- HTTP Server event handlers ------------------------------------------ }}}
+
+// --- Default error handler ----------------------------------------------- {{{
+
+app.use((err, req, res, next) => {
+  // TODO: Render error using HTML
+  // TODO: Print stack trace only in development mode
+  res
+    .status(err.status || 500)
+    .send(`<h1>${err.message}</h1><pre>${err.stack}</pre>`)
+})
+
+// --- Default error handler ----------------------------------------------- }}}

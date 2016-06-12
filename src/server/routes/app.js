@@ -15,13 +15,14 @@ const
   route = Router()
 
 route.get('/', (req, res) => {
-  res.render('index.html')
+  res.render('index')
 })
 
 // --- HTTP 404 handler ---------------------------------------------------- {{{
-// IMPORTANT: this must be the last request handler.
+// IMPORTANT: this must be the last request handler (before error handlers).
 
 route.use((req, res, next) => {
+  // TODO: Render nice 404 using HTML
   res
     .status(404)
     .send('<h1>NOPE!!</h1>')
