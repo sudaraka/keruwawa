@@ -13,6 +13,7 @@ import express from 'express'
 
 import appRoutes from './routes/app'
 import apiRoutes from './routes/api'
+import { apiResponse } from './utils'
 
 const
   app = express(),
@@ -77,7 +78,7 @@ app.use((req, res, next) => {
   res.status(404)
 
   if(req.url.match(/^\/api\//)) {
-    res.json({})
+    res.json(apiResponse({ 'code': 404 }))
   }
   else {
     // TODO: Render error using HTML

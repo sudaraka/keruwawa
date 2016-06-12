@@ -11,11 +11,13 @@
 
 import { Router } from 'express'
 
+import { apiResponse } from '../utils'
+
 const
   route = Router()
 
 route.get('/', (req, res) => {
-  res.json({'status': 'OK'})
+  res.json(apiResponse())
 })
 
 export default route
