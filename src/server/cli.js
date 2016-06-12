@@ -14,13 +14,11 @@ import express from 'express'
 import appRoutes from './routes/app'
 import apiRoutes from './routes/api'
 import { apiResponse } from './utils'
+import config from './config'
 
 const
   app = express(),
-  server = app.listen(
-    process.env.KERUWAWA_HTTP_PORT || 5000,
-    process.env.KERUWAWA_HTTP_HOST || '127.0.0.1'
-  )
+  server = app.listen(config.http.port, config.http.host)
 
 // --- HTTP Server event handlers ------------------------------------------ {{{
 

@@ -21,6 +21,8 @@ export default {
   },
 
   'externals': {
-    'express': 'commonjs express'
+    'deep-assign': 'commonjs deep-assign',
+    'express': 'commonjs express',
+    'yargs': 'commonjs yargs'
   }
 }
