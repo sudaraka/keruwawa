@@ -12,7 +12,7 @@
     "build": "webpack",
     "postbuild": "sed -i '1i#!/usr/bin/env node' $npm_package_bin_keruwawa_server",
     "clean": "rm -fr dist/",
-    "start": "node $npm_package_bin_keruwawa_server",
+    "start": "nodemon $npm_package_bin_keruwawa_server",
     "pretest": "eslint src/",
     "test": "exit 0;"
   },
@@ -35,6 +35,7 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-stage-2": "^6.5.0",
     "eslint": "^2.12.0",
+    "nodemon": "^1.9.2",
     "webpack": "^1.13.1"
   }
 }
