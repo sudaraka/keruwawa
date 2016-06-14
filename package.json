@@ -12,7 +12,7 @@
     "build": "webpack",
     "postbuild": "sed -i '1i#!/usr/bin/env node' $npm_package_bin_keruwawa_server",
     "clean": "rm -fr dist/",
-    "start": "nodemon $npm_package_bin_keruwawa_server",
+    "start": "nodemon $npm_package_bin_keruwawa_server -c config.json",
     "pretest": "eslint src/",
     "test": "exit 0;"
   },
