@@ -29,4 +29,33 @@ export const
       message,
       data
     }
+  },
+
+  errResponse = err => {
+    let
+      res
+
+    if('ECONNREFUSED' === err.code
+      || 'ER_ACCESS_DENIED_ERROR' === err.code
+      || 'ER_ACCESS_DENIED_ERROR' === err.code) {
+      res = apiResponse({
+        'code': 503,
+        'message': 'Database not available'
+      })
+    }
+    else if('ER_PARSE_ERROR' === err.code) {
+      res = apiResponse({
+        'code': 500,
+        'message': 'Failed to query data'
+      })
+    }
+    else {
+      res = apiResponse({
+        'code': 500,
+        'message': 'Database connection or query failed',
+        'data': err
+      })
+    }
+
+    return res
   }

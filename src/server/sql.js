@@ -2,9 +2,10 @@ export const
 
   WEEKLY_ALL = `
   select
-    ProjectName,
-    DATE_FORMAT(StartTime, '%Y %u') as Week,
-    SUM(TIME_TO_SEC(TIMEDIFF(EndTime, StartTime))) as Duration
+    ProjectName as project,
+    CAST(DATE_FORMAT(StartTime, '%Y') as INT) as year,
+    CAST(DATE_FORMAT(StartTime, '%u') as INT) as week,
+    SUM(TIME_TO_SEC(TIMEDIFF(EndTime, StartTime))) as duration
   from
     sessions as s
   inner join
@@ -14,8 +15,10 @@ export const
       and DATE_FORMAT(StartTime, '%Y') in (?)
   GROUP BY
     ProjectName,
-    Week
+    year,
+    week
   ORDER BY
-    Week,
+    year,
+    week,
     ProjectName
   `

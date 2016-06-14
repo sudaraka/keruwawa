@@ -10,14 +10,28 @@
  */
 
 import { Router } from 'express'
+import { format } from 'mysql'
 
-import { apiResponse } from '../utils'
+import { apiResponse, errResponse } from '../utils'
+import { WEEKLY_ALL } from '../sql'
 
 const
   route = Router()  // eslint-disable-line new-cap
 
-route.get('/', (req, res) => {
-  res.json(apiResponse())
+route.get('/weekly-hours/', (req, res) => {
+  const
+    db = req.app.get('db'),
+    sql = format(WEEKLY_ALL, [ [ 2016 ] ])
+
+  db.query(sql, (err, data) => {
+    if(err) {
+      res.json(errResponse(err))
+    }
+    else {
+      res.json(apiResponse({ data }))
+    }
+  })
+
 })
 
 export default route
