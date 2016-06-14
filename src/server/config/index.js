@@ -20,6 +20,12 @@ const
     'http': {
       'host': process.env.KERUWAWA_HTTP_HOST || '127.0.0.1',
       'port': process.env.KERUWAWA_HTTP_PORT || 5000
+    },
+    'db': {
+      'host': '127.0.0.1',
+      'user': 'root',
+      'password': '',
+      'database': 'timesheet'
     }
   },
 

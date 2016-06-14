@@ -10,6 +10,7 @@
  */
 
 import express from 'express'
+import { createPool } from 'mysql'
 
 import appRoutes from './routes/app'
 import apiRoutes from './routes/api'
@@ -64,6 +65,8 @@ server.on('error', error => {
 // ------------------------------------------------------------------------- }}}
 
 app.set('x-powered-by', false)
+
+app.set('db', createPool(config.db))
 
 // Routers
 app.use('/', appRoutes)
