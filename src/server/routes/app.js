@@ -9,13 +9,14 @@
  * details.
  */
 
+import { join } from 'path'
 import { Router } from 'express'
 
 const
   route = Router()  // eslint-disable-line new-cap
 
 route.get('/', (req, res) => {
-  res.render('index')
+  res.sendFile(join(__dirname, 'index.html'))
 })
 
 export default route

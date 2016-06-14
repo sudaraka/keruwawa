@@ -13,6 +13,7 @@ details.
 
 ## [Unreleased]
 ### Added
+- Generate HTML page(s) using `html-webpack-plugin`.
 - `nodemon` to run and auto-restart development server on file changes.
 - ESLint support.
 - `webpack` to build web server executable script with ES2015 support.

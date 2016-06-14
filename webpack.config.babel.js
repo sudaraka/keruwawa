@@ -1,4 +1,5 @@
 import 'webpack'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { join } from 'path'
 
 export default {
@@ -11,6 +12,8 @@ export default {
     'path': join(__dirname, 'dist'),
     'filename': '[name]'
   },
+
+  'node': { '__dirname': false },
 
   'module': {
     'loaders': [
@@ -27,5 +30,12 @@ export default {
     'express': 'commonjs express',
     'mysql': 'commonjs mysql',
     'yargs': 'commonjs yargs'
-  }
+  },
+
+  'plugins': [
+    new HtmlWebpackPlugin({
+      'excludeChunks': [ 'server.js' ],
+      'template': join(__dirname, 'src/client/index.html')
+    })
+  ]
 }
