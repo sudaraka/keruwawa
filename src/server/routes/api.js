@@ -31,6 +31,22 @@ route.get('/weekly-hours/', (req, res) => {
     else {
       const
         payload = data
+          .reduce((acc, work) => {
+            const
+              key = `${work.year}-${work.week}`
+
+            if(!acc[key]) {
+              acc[key] = {}
+            }
+
+            if(!acc[key][work.project]) {
+              acc[key][work.project] = 0
+            }
+
+            acc[key][work.project] += work.duration
+
+            return acc
+          }, {})
 
       res.json(apiResponse({ payload }))
     }
