@@ -11,7 +11,7 @@
  */
 
 export const
-  apiResponse = ({ data = null, message = null, code = 200 } = {}) => {
+  apiResponse = ({ payload = null, message = null, code = 200 } = {}) => {
     const
       messageMap = {
         '200': 'OK',
@@ -28,7 +28,7 @@ export const
       'error': 200 !== code,
       code,
       message,
-      data
+      payload
     }
   },
 
@@ -54,7 +54,7 @@ export const
       res = apiResponse({
         'code': 500,
         'message': 'Database connection or query failed',
-        'data': err
+        'payload': err
       })
     }
 

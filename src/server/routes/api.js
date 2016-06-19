@@ -29,7 +29,10 @@ route.get('/weekly-hours/', (req, res) => {
       res.json(errResponse(err))
     }
     else {
-      res.json(apiResponse({ data }))
+      const
+        payload = data
+
+      res.json(apiResponse({ payload }))
     }
   })
 
