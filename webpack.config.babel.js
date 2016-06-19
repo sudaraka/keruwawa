@@ -6,7 +6,10 @@ export default {
   'target': 'node',
   'context': join(__dirname, 'src'),
 
-  'entry': { 'server.js': './server/cli.js' },
+  'entry': {
+    'server.js': './server/cli.js',
+    'client.js': './client/index.js'
+  },
 
   'output': {
     'path': join(__dirname, 'dist'),

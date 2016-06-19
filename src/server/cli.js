@@ -69,6 +69,10 @@ app.set('x-powered-by', false)
 
 app.set('db', createPool(config.db))
 
+if('development' === app.get('env')) {
+  app.use(express.static(__dirname))
+}
+
 // Routers
 app.use('/', appRoutes)
 app.use('/api/', apiRoutes)
