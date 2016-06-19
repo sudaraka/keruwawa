@@ -14,7 +14,8 @@
     "clean": "rm -fr dist/",
     "start": "nodemon $npm_package_bin_keruwawa_server -c config.json",
     "pretest": "eslint src/",
-    "test": "exit 0;"
+    "test": "exit 0;",
+    "livereload": "livereload dist/"
   },
   "keywords": [
     "time-sheet",
@@ -36,6 +37,7 @@
     "babel-preset-stage-2": "^6.5.0",
     "eslint": "^2.12.0",
     "html-webpack-plugin": "^2.21.0",
+    "node-livereload": "^0.6.0",
     "nodemon": "^1.9.2",
     "webpack": "^1.13.1"
   }
