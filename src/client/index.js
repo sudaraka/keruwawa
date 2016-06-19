@@ -10,4 +10,20 @@
  *
  */
 
-console.log('Yay!!!!')
+import axios from 'axios'
+
+axios.get('/api/weekly-hours/').then(res => {
+  if(!res.data && 200 !== res.status) {
+    console.error(res.statusText)
+
+    return
+  }
+
+  if(res.data.error) {
+    console.error(res.data.message)
+
+    return
+  }
+
+  console.log(res.data.payload)
+})

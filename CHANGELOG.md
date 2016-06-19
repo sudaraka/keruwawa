@@ -13,6 +13,7 @@ details.
 
 ## [Unreleased]
 ### Added
+- `axios` to make API calls from client side.
 - Generate HTML page(s) using `html-webpack-plugin`.
 - `nodemon` to run and auto-restart development server on file changes.
 - ESLint support.
