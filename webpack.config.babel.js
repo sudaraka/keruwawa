@@ -1,44 +1,65 @@
-import 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { join } from 'path'
 
-export default {
-  'target': 'node',
-  'context': join(__dirname, 'src'),
+export default [
+  // Server configuration
+  {
+    'target': 'node',
+    'context': join(__dirname, 'src/server'),
 
-  'entry': {
-    'server.js': './server/cli.js',
-    'client.js': './client/index.js'
+    'entry': { 'server.js': './cli.js' },
+
+    'output': {
+      'path': join(__dirname, 'dist'),
+      'filename': '[name]'
+    },
+
+    'node': { '__dirname': false },
+
+    'module': {
+      'loaders': [
+        {
+          'test': /\.js$/,
+          'exclude': /node_modules/,
+          'loader': 'babel'
+        }
+      ]
+    },
+
+    'externals': {
+      'deep-assign': 'commonjs deep-assign',
+      'express': 'commonjs express',
+      'mysql': 'commonjs mysql',
+      'yargs': 'commonjs yargs'
+    }
   },
 
-  'output': {
-    'path': join(__dirname, 'dist'),
-    'filename': '[name]'
-  },
+  // Client configuration
+  {
+    'context': join(__dirname, 'src/client'),
 
-  'node': { '__dirname': false },
+    'entry': { 'client.js': './index.js' },
 
-  'module': {
-    'loaders': [
-      {
-        'test': /\.js$/,
-        'exclude': /node_modules/,
-        'loader': 'babel'
-      }
+    'output': {
+      'path': join(__dirname, 'dist'),
+      'filename': '[name]'
+    },
+
+    'module': {
+      'loaders': [
+        {
+          'test': /\.js$/,
+          'exclude': /node_modules/,
+          'loader': 'babel'
+        }
+      ]
+    },
+
+    'plugins': [
+      new HtmlWebpackPlugin({
+        'excludeChunks': [ 'server.js' ],
+        'template': join(__dirname, 'src/client/index.html')
+      })
     ]
-  },
-
-  'externals': {
-    'deep-assign': 'commonjs deep-assign',
-    'express': 'commonjs express',
-    'mysql': 'commonjs mysql',
-    'yargs': 'commonjs yargs'
-  },
-
-  'plugins': [
-    new HtmlWebpackPlugin({
-      'excludeChunks': [ 'server.js' ],
-      'template': join(__dirname, 'src/client/index.html')
-    })
-  ]
-}
+  }
+]
