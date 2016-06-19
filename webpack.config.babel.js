@@ -1,3 +1,4 @@
+import webpack from 'webpack'
 import { join } from 'path'
 import merge from 'webpack-merge'
 
@@ -19,7 +20,12 @@ const
           'loader': 'babel'
         }
       ]
-    }
+    },
+
+    'plugins': [
+      // Exclude moment.js locale from the build
+      new webpack.IgnorePlugin(/locale/, /moment$/)
+    ]
   }
 
 export default [

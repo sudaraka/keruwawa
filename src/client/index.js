@@ -11,6 +11,7 @@
  */
 
 import axios from 'axios'
+import moment from 'moment'
 
 axios.get('/api/weekly-hours/').then(res => {
   const
@@ -57,7 +58,7 @@ axios.get('/api/weekly-hours/').then(res => {
     .forEach(week => {
       const
         tr = document.createElement('tr'),
-        key = `2016-${week}`
+        key = `${moment().format('Y')}-${week}`
 
       let
         td
