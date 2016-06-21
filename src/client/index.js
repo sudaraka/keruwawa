@@ -78,9 +78,15 @@ axios.get('/api/weekly-hours/').then(res => {
     return acc
   }, {})
 
-  console.log(Object.values(datasets))
-
   datasets = Object.values(datasets)
+
+  datasets.sort((a, b) => {
+    const
+      sumA = a.data.reduce((acc, hours) => acc + hours),
+      sumB = b.data.reduce((acc, hours) => acc + hours)
+
+    return sumA - sumB
+  })
 
   new Chart(ctx, {  // eslint-disable-line no-new
     'type': 'line',
