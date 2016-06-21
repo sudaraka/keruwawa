@@ -13,6 +13,7 @@ details.
 
 ## [Unreleased]
 ### Added
+- `Chart.js` to render work hour data into a chart.
 - `moment.js` for date/time processing and formatting.
 - `axios` to make API calls from client side.
 - Generate HTML page(s) using `html-webpack-plugin`.

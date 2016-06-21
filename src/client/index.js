@@ -11,22 +11,29 @@
  */
 
 import axios from 'axios'
+import Chart from 'chart.js'
 import moment from 'moment'
 
 axios.get('/api/weekly-hours/').then(res => {
   const
-    appDiv = document.querySelector('#app'),
-    tbl = document.createElement('table'),
-    thead = document.createElement('thead'),
-    tbody = document.createElement('tbody'),
-    trh = document.createElement('tr'),
-    weekList = Array(54).fill(0).map((_, i) => i),
-    data = res.data.payload
+    ctx = document.querySelector('#mainCanvas'),
+    thisWeek = parseInt(moment().format('w'), 10),
+    labels = Array(thisWeek).fill(0).map((_, i) => i),
+    thisYear = moment().format('Y'),
+    data = res.data.payload,
+    RGB = [
+      '153, 204, 153',
+      '102, 153, 204',
+      '204, 153, 204',
+      '102, 204, 204',
+      '249, 145, 87',
+      '210, 123,83',
+      '255, 204, 102',
+      '242, 119,122'
+    ]
 
   let
-    th
-
-  appDiv.innerHTML = null
+    datasets
 
   if(!res.data && 200 !== res.status) {
     console.error(res.statusText)
@@ -40,47 +47,47 @@ axios.get('/api/weekly-hours/').then(res => {
     return
   }
 
-  th = document.createElement('th')
-  th.textContent = 'Week'
-  trh.appendChild(th)
+  datasets = labels.reduce((acc, week) => {
+    const
+      weekInfo = data[`${thisYear}-${week}`]
 
-  th = document.createElement('th')
-  th.textContent = 'Projects'
-  trh.appendChild(th)
+    if(!weekInfo) {
+      return acc
+    }
 
-  th = document.createElement('th')
-  th.textContent = 'Hours'
-  trh.appendChild(th)
+    Object.keys(weekInfo).forEach(project => {
+      if(!acc[project]) {
+        const
+          color = RGB.shift()
 
-  thead.appendChild(trh)
+        RGB.push(color)
 
-  weekList
-    .forEach(week => {
-      const
-        tr = document.createElement('tr'),
-        key = `${moment().format('Y')}-${week}`
+        acc[project] = {
+          'label': project,
+          'backgroundColor': `rgba(${color}, 1)`,
+          'borderColor': 'rgba(0, 0, 0, 0)',
+          'borderWidth': 1,
+          'pointRadius': 0,
+          'data': []
+        }
+      }
 
-      let
-        td
-
-      td = document.createElement('td')
-      td.textContent = week
-      tr.appendChild(td)
-
-      td = document.createElement('td')
-      td.textContent = Object.keys(data[key] || []).join(', ')
-      tr.appendChild(td)
-
-      td = document.createElement('td')
-      td.textContent = (Object.values(data[key] || []).reduce((a, v) => a + v, 0) / (60 * 60)).toFixed(2)
-      tr.appendChild(td)
-
-      tbody.appendChild(tr)
+      acc[project].data[week] = weekInfo[project] / (60 * 60)
     })
 
-  tbl.className = 'table'
-  tbl.appendChild(thead)
-  tbl.appendChild(tbody)
+    return acc
+  }, {})
 
-  appDiv.appendChild(tbl)
+  console.log(Object.values(datasets))
+
+  datasets = Object.values(datasets)
+
+  new Chart(ctx, {  // eslint-disable-line no-new
+    'type': 'line',
+    'data': {
+      labels,
+      datasets
+    },
+    'options': { 'scales': { 'yAxes': [ { 'stacked': true } ] } }
+  })
 })
