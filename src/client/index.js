@@ -28,11 +28,11 @@ axios.get('/api/weekly-hours/').then(res => {
       '102, 204, 204',
       '249, 145, 87',
       '210, 123,83',
-      '255, 204, 102',
-      '242, 119,122'
+      '255, 204, 102'
     ]
 
   let
+    totalHours = [],
     datasets
 
   if(!res.data && 200 !== res.status) {
@@ -64,11 +64,10 @@ axios.get('/api/weekly-hours/').then(res => {
 
         acc[project] = {
           'label': project,
+          'yAxisID': 'y-axes-hours',
           'backgroundColor': `rgba(${color}, 1)`,
           'borderColor': 'rgba(0, 0, 0, 0)',
-          'borderWidth': 1,
-          'pointRadius': 0,
-          'data': []
+          'data': Array(thisWeek).fill(0)
         }
       }
 
@@ -88,12 +87,67 @@ axios.get('/api/weekly-hours/').then(res => {
     return sumA - sumB
   })
 
+  totalHours = datasets
+    .reduce(
+      (acc, project) => acc.map((v, i) => v + project.data[i]),
+      Array(thisWeek).fill(0)
+    )
+
+  datasets.push({
+    'label': 'Average',
+    'borderWidth': 1,
+    'pointRadius': 1,
+    'pointBorderWidth': 4,
+    'backgroundColor': 'rgba(0, 0, 0, 0)',
+    'borderColor': 'rgba(242, 119, 122, 1)',
+    'yAxisID': 'y-axes-avg',
+    'data': totalHours
+      .reduce((acc, hours) => {
+        acc.push(hours + (acc[acc.length - 1] || 0))
+
+        return acc
+      }, [])
+      .map((hours, i) => (hours / (i + 1)).toFixed(2))
+  })
+
   new Chart(ctx, {  // eslint-disable-line no-new
     'type': 'line',
     'data': {
       labels,
       datasets
     },
-    'options': { 'scales': { 'yAxes': [ { 'stacked': true } ] } }
+    'options': {
+      'title': {
+        'display': true,
+        'text': 'All Peojects Summary'
+      },
+      'legend': { 'position': 'bottom' },
+      'elements': {
+        'line': { 'borderWidth': 0 },
+        'point': { 'radius': 0 }
+      },
+      'scales': {
+        'xAxes': [ { 'gridLines': { 'display': false } } ],
+        'yAxes': [ {
+          'id': 'y-axes-hours',
+          'ticks': {
+            'beginAtZero': true,
+            'min': 0,
+            'max': Math.ceil(Math.max(...totalHours)),
+            'stepSize': 2
+          },
+          'stacked': true
+        }, {
+          'id': 'y-axes-avg',
+          'display': false,
+          'ticks': {
+            'beginAtZero': true,
+            'min': 0,
+            'max': Math.ceil(Math.max(...totalHours)),
+            'stepSize': 2
+          }
+        } ]
+      }
+    }
   })
 })
