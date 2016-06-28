@@ -11,6 +11,7 @@ export default {
   'externals': {
     'deep-assign': 'commonjs deep-assign',
     'express': 'commonjs express',
+    'moment': 'commonjs moment',
     'mysql': 'commonjs mysql',
     'yargs': 'commonjs yargs'
   }

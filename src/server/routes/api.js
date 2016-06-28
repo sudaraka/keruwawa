@@ -12,6 +12,7 @@
 
 import { Router } from 'express'
 import { format } from 'mysql'
+import moment from 'moment'
 
 import { apiResponse, errResponse } from '../utils'
 import { WEEKLY_ALL } from '../sql'
@@ -22,7 +23,7 @@ const
 route.get('/weekly-hours/', (req, res) => {
   const
     db = req.app.get('db'),
-    sql = format(WEEKLY_ALL, [ [ 2016 ] ])
+    sql = format(WEEKLY_ALL, [ [ moment().format('Y') ] ])
 
   db.query(sql, (err, data) => {
     if(err) {

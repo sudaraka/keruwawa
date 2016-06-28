@@ -27,6 +27,7 @@
   "dependencies": {
     "deep-assign": "^2.0.0",
     "express": "^4.14.0",
+    "moment": "^2.13.0",
     "mysql": "^2.11.1",
     "yargs": "^4.7.1"
   },
@@ -39,7 +40,6 @@
     "chart.js": "^2.1.6",
     "eslint": "^2.13.1",
     "html-webpack-plugin": "^2.21.0",
-    "moment": "^2.13.0",
     "node-livereload": "^0.6.0",
     "nodemon": "^1.9.2",
     "webpack": "^1.13.1",
