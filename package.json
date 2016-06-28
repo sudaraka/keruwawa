@@ -1,8 +1,11 @@
 {
-  "name": "keruwawa",
+  "name": "@sudaraka/keruwawa",
   "version": "0.0.0",
   "description": "Reports and graphs generated based on my time-sheet data.",
-  "private": true,
+  "preferGlobal": true,
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "index.js",
   "bin": {
     "keruwawa-server": "dist/server.js"
