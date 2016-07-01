@@ -13,6 +13,7 @@ details.
 
 ## [Unreleased]
 ### Added
+- `systemd` service file to start HTTP server process.
 - `Chart.js` to render work hour data into a chart.
 - `moment.js` for date/time processing and formatting.
 - `axios` to make API calls from client side.

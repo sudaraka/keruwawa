@@ -1,0 +1,19 @@
+# keruwawa.service: Run keruwawa HTTP server
+
+[Unit]
+Description=Keruwawa HTTP server
+After=network.target
+
+[Service]
+PIDFile=/run/keruwawa/pid
+User=www
+Group=www
+WorkingDirectory=/home/www/keruwawa
+Environment="NODE_ENV=production"
+ExecStart=/usr/bin/keruwawa-server -c /home/www/keruwawa/config.json
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
