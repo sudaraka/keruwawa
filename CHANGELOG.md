@@ -11,7 +11,7 @@ details.
 
 ---
 
-## [Unreleased]
+## [1.0.0] - 2016-07-01
 ### Added
 - `nginx` configuration file.
 - `systemd` service file to start HTTP server process.
