@@ -48,5 +48,13 @@
     "nodemon": "^1.9.2",
     "webpack": "^1.13.1",
     "webpack-merge": "^0.14.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sudaraka/keruwawa.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sudaraka/keruwawa/issues"
+  },
+  "homepage": "https://github.com/sudaraka/keruwawa#readme"
 }
