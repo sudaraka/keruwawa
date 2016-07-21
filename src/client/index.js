@@ -22,13 +22,24 @@ axios.get('/api/weekly-hours/').then(res => {
     thisYear = moment().format('Y'),
     data = res.data.payload,
     RGB = [
-      '153, 204, 153',
-      '102, 153, 204',
-      '204, 153, 204',
-      '102, 204, 204',
-      '249, 145, 87',
-      '210, 123,83',
-      '255, 204, 102'
+      '252, 110, 81',
+      '255, 206, 84',
+      '160, 212, 104',
+      '72, 207, 173',
+      '160, 206, 203',
+      '93, 156, 236',
+      '172, 146, 236',
+      '236, 135, 192',
+      '186, 162, 134',
+      '216, 51, 74',
+      '46, 204, 113',
+      '93, 156, 236',
+      '128, 103, 183',
+      '142, 130, 113',
+      '237, 85, 101',
+      '255, 206, 84',
+      '79, 193, 233',
+      '101, 109, 120'
     ]
 
   let
@@ -65,7 +76,7 @@ axios.get('/api/weekly-hours/').then(res => {
         acc[project] = {
           'label': project,
           'yAxisID': 'y-axes-hours',
-          'backgroundColor': `rgba(${color}, 1)`,
+          'backgroundColor': `rgba(${color}, .8)`,
           'borderColor': 'rgba(0, 0, 0, 0)',
           'data': Array(thisWeek).fill(0)
         }
