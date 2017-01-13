@@ -17,7 +17,7 @@ import moment from 'moment'
 axios.get('/api/weekly-hours/').then(res => {
   const
     ctx = document.querySelector('#mainCanvas'),
-    thisWeek = parseInt(moment().format('w'), 10),
+    thisWeek = parseInt(moment().format('w'), 10) + 1,
     labels = Array(thisWeek).fill(0).map((_, i) => i),
     thisYear = moment().format('Y'),
     data = res.data.payload,

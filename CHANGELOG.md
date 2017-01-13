@@ -11,6 +11,10 @@ details.
 
 ---
 
+## [Unreleased]
+### Fixed
+- UI does not show the current week's data on the graph.
+
 ## [1.0.1] - 2016-07-21
 ### Added
 - Add URL to source repository in `package.json` an application footer.
