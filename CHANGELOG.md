@@ -11,7 +11,7 @@ details.
 
 ---
 
-## [Unreleased]
+## [1.0.2] - 2017-01-13
 ### Fixed
 - UI does not show the current week's data on the graph.
 
