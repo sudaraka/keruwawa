@@ -11,6 +11,14 @@ details.
 
 ---
 
+## [1.0.1] - 2016-07-21
+### Added
+- Add URL to source repository in `package.json` an application footer.
+- Show version number in footer.
+
+### Changed
+- Changed existing graph colors and added more to the color list.
+
 ## [1.0.0] - 2016-07-01
 ### Added
 - `nginx` configuration file.
